@@ -21,3 +21,24 @@ class Solution(object):
                     ( latest_element == '[' and element != ']')
                 ): return False
         return len(new_stack) == 0
+
+#This is my first solution here I use a stack
+#I can do a little bit better
+
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        opening_braces = set('{[(')
+        close_to_open = { '}':'{', ')':'(', ']':'[' }
+        stack = []
+        for element in s:
+            if element in opening_braces:
+                stack.append(element)
+            else: 
+                if len(stack)==0 or stack[-1]!= close_to_open[element]:
+                    return False
+                stack.pop()
+        return len(stack) == 0
